@@ -14,7 +14,7 @@ public class APIConnect {
 
     public static JsonObject apiConnection() throws IOException {
 
-        String sURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson"; //just a string
+        String sURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"; //just a string
 
         // Connect to the URL using java's native library
         URL url = new URL(sURL);

@@ -5,7 +5,7 @@ import java.lang.*;
 class DistanceCalculator
 {
 
-    public static double distance(double lat1, double lon1, double lat2, double lon2) {
+    public static int distance(double lat1, double lon1, double lat2, double lon2) {
         if ((lat1 == lat2) && (lon1 == lon2)) {
             return 0;
         }
@@ -16,7 +16,7 @@ class DistanceCalculator
             dist = Math.toDegrees(dist);
             dist = dist * 1.609344;
 
-            return (dist);
+            return (int)dist;
         }
     }
 }

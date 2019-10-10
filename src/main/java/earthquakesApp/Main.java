@@ -1,6 +1,9 @@
 package earthquakesApp;
 
 import earthquakesApp.geoJson.Feature;
+
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static earthquakesApp.DeserializeGeoJson.deserializeGeoJson;
@@ -13,11 +16,27 @@ public class Main {
 
         List<Feature> featured = deserializeGeoJson();
 
-        for(Feature f : featured){
-            System.out.println(f.getProperties().getPlace());;
-            List<Double> coords =  f.getGeometry().getCoordinates();
-            System.out.println(distance(lat1,coords.get(0),lon1,coords.get(1)));
+        ArrayList<PointDistance> topPoints = new ArrayList<PointDistance>();
 
+        for(Feature f : featured){
+            List<Double> coords =  f.getGeometry().getCoordinates();
+            int distanceFromPoint =  distance(lat1,coords.get(0),lon1,coords.get(1));
+            PointDistance pointDistance1 = new PointDistance(distanceFromPoint,f.getProperties().getTitle(),coords.get(0),coords.get(1));
+            topPoints.add(pointDistance1);
+        }
+        Collections.sort(topPoints);
+
+        int x = 10;
+        if(topPoints.size()<=10){
+            x = topPoints.size();
+        }
+        for(int i = 0 ; i < x ; i++){
+            if(i>0) {
+                if (topPoints.get(i).getLat() == topPoints.get(i - 1).getLat() && topPoints.get(i).getLon() == topPoints.get(i - 1).getLon()) {
+                    continue;
+                }
+            }
+            System.out.println(topPoints.get(i));
         }
     }
 }

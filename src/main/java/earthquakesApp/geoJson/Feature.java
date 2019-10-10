@@ -9,7 +9,7 @@ import java.util.List;
 public class Feature {
 
     @SerializedName("type")
-    private String mType;
+    private transient String mType;
     public String getType() {
         return mType;
     }
@@ -27,7 +27,7 @@ public class Feature {
     }
 
     @SerializedName("id")
-    private String mId;
+    private transient String mId;
     public String getId() {
         return mId;
     }
