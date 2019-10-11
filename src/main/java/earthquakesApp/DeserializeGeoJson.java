@@ -11,15 +11,12 @@ public class DeserializeGeoJson {
 
     public static List<Feature> deserializeGeoJson() {
 
-        JsonObject response = new JsonObject();
+        JsonObject response;
 
         APIConnect apiConnect = new APIConnect();
 
-        try {
-            response = apiConnect.apiConnection();
-        } catch (Exception e) {
-            System.out.println("Problem with connection");
-        }
+        response = apiConnect.getEarthquakesApi();
+
 
         Gson gson = new Gson();
 
